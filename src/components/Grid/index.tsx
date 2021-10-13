@@ -7,6 +7,8 @@ const Grid = () => {
     const initializeGrid = () => {
         const { defaultGridSize: dgs } = config;
         let tempGrid = [];
+        let contentArray = ["a", "b", "c", "d", "e", "f", "g", "h"];
+        let content = shuffle([...contentArray, ...contentArray]);
 
         for (let column = 0; column < dgs; column++) {
             for (let row = 0; row < dgs; row++) {
@@ -14,12 +16,22 @@ const Grid = () => {
                     id: column * dgs + row,
                     x: row,
                     y: column,
-                    content: "@"
+                    content: content[column * dgs + row],
+                    isActive: false
                 });
             }
         }
 
         return tempGrid;
+    };
+
+    const shuffle = (o: string[]) => {
+        for (
+            var j, x, i = o.length;
+            i;
+            j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x
+        );
+        return o;
     };
 
     const [grid, setGrid] = useState(initializeGrid());
