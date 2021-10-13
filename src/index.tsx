@@ -1,9 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { Grid } from "./components";
 
 ReactDOM.render(
     <React.StrictMode>
-        <div>123</div>
+        <Grid />
     </React.StrictMode>,
     document.getElementById("root")
 );
