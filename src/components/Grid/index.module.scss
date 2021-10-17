@@ -1,8 +1,6 @@
 .grid {
-    display: inline-grid;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: repeat(4, 100px);
-    align-items: center;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 800px;
     background-color: cornflowerblue;
 }
