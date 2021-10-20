@@ -3,28 +3,42 @@ import { Cell } from "..";
 import { config, shuffleArray } from "../../helpers";
 import styles from "./index.module.scss";
 
-const { defaultFlipTime, defaultGridSize: dgs } = config;
+const { content } = config;
 
 const Grid = ({
     setMovesCount,
     gameStatus,
-    setGameStatus
+    setGameStatus,
+    size,
+    speed,
+    startGame
 }: {
     setMovesCount: any;
     gameStatus: string;
     setGameStatus: any;
+    size: any;
+    speed: any;
+    startGame: any;
 }) => {
-    const initializeGrid = () => {
-        let tempGrid = [];
-        let contentArray = ["a", "b", "c", "d", "e", "f", "g", "h"];
-        let content = shuffleArray([...contentArray, ...contentArray]);
+    const {
+        value: { width, height }
+    } = size;
 
-        for (let column = 0; column < dgs; column++) {
-            for (let row = 0; row < dgs; row++) {
-                let id = column * dgs + row;
+    const fillContentArray = () => {
+        const contentArray = [...content].splice(0, (width * height) / 2);
+        return shuffleArray([...contentArray, ...contentArray]);
+    };
+
+    const initializeGrid = () => {
+        const tempGrid = [];
+        const preparedContent = fillContentArray();
+
+        for (let column = 0; column < width; column++) {
+            for (let row = 0; row < height; row++) {
+                let id = column * height + row;
                 tempGrid.push({
                     id,
-                    content: content[id],
+                    content: preparedContent[id],
                     isActive: false,
                     isOpened: false
                 });
@@ -38,23 +52,35 @@ const Grid = ({
     const [checkedCells, setCheckedCells] = useState<number[]>([]);
     const [openedCellsCount, setOpenedCellsCount] = useState<number>(0);
 
+    const startNewGame = () => {
+        startGame();
+        setGrid(initializeGrid());
+        setCheckedCells([]);
+        setOpenedCellsCount(0);
+    };
+
     useEffect(() => {
         if (gameStatus === "not-started") {
-            setGrid(initializeGrid());
-            setCheckedCells([]);
-            setOpenedCellsCount(0);
+            startNewGame();
         }
+        // eslint-disable-next-line
     }, [gameStatus]);
+
+    useEffect(() => {
+        startNewGame();
+        // eslint-disable-next-line
+    }, [size, speed]);
 
     const getCellById = (id: number) => {
         return grid.find((cell) => cell.id === id);
     };
 
-    const checkWinCondition = () => {
-        if (openedCellsCount === dgs * dgs) {
+    useEffect(() => {
+        if (openedCellsCount / 2 === width * height) {
             setGameStatus("stopped");
         }
-    };
+        // eslint-disable-next-line
+    }, [openedCellsCount]);
 
     const startTimer = () => {
         if (checkedCells.length === 1) {
@@ -69,7 +95,7 @@ const Grid = ({
                         return cell;
                     })
                 );
-            }, defaultFlipTime);
+            }, speed.value);
         }
     };
 
@@ -84,7 +110,7 @@ const Grid = ({
                 prev.map((cell) => {
                     if (id === cell.id || checkedCells[0] === cell.id) {
                         if (checkedCells.length === 1 && isCellsMatching([...checkedCells, id])) {
-                            setOpenedCellsCount((prev: number) => prev + 1);
+                            setOpenedCellsCount((prev: number) => ++prev);
                             return { ...cell, isOpened: true };
                         } else return { ...cell, isActive: true };
                     }
@@ -92,13 +118,12 @@ const Grid = ({
                 })
             );
         }
-        checkWinCondition();
     };
 
     const isCellsMatching = (cells: number[]) => {
         if (cells.length === 2) {
-            let firstCell = getCellById(cells[0]);
-            let secondCell = getCellById(cells[1]);
+            const firstCell = getCellById(cells[0]);
+            const secondCell = getCellById(cells[1]);
 
             if (firstCell && secondCell) {
                 return firstCell.content === secondCell.content;
@@ -108,9 +133,14 @@ const Grid = ({
     };
 
     return (
-        <div className={styles.grid}>
+        <div
+            className={styles.grid}
+            style={{
+                gridTemplateColumns: `repeat(${width}, minmax(50px, 100px))`
+                // gridTemplateRows: `repeat(${height}, 75px)`
+            }}>
             {grid.map((cell) => (
-                <Cell key={cell.id} {...cell} onClick={() => handleCellClick(cell.id)} />
+                <Cell key={cell.id} {...cell} onClick={() => handleCellClick(cell.id)} speed={speed} />
             ))}
         </div>
     );

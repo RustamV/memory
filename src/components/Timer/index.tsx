@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
-// import { useAppContext } from "../../helpers/functions/context";
-// import "./index.scss";
 
-const Timer = ({ time, setTime, gameStatus }: { time: number; setTime: any; gameStatus: string }) => {
+const Timer = ({ gameStatus }: { gameStatus: string }) => {
+    const [time, setTime] = useState<number>(0);
     const [date, setDate] = useState(new Date());
-    // const { imageTheme } = useAppContext();
 
     const tick = () => {
         if (gameStatus === "started") {
@@ -19,6 +17,7 @@ const Timer = ({ time, setTime, gameStatus }: { time: number; setTime: any; game
         return () => {
             clearTimeout(timerID);
         };
+        // eslint-disable-next-line
     }, [date, gameStatus]);
 
     useEffect(() => {

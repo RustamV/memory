@@ -1,7 +1,5 @@
 .grid {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
     max-width: 800px;
-    width: 100%;
     background-color: cornflowerblue;
 }

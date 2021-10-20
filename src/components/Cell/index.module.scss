@@ -1,7 +1,5 @@
 .cell {
     background-color: transparent;
-    width: 25%;
-    height: 50px;
     display: inline-block;
     perspective: 1000px;
 
@@ -10,6 +8,11 @@
             transform: rotateY(180deg);
         }
     }
+
+    img {
+        width: 100%;
+        display: block;
+    }
 }
 
 .inner {
@@ -17,7 +20,6 @@
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 1.5s;
     transform-style: preserve-3d;
 }
 
