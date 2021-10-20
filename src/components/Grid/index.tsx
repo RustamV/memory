@@ -1,11 +1,19 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Cell } from "..";
 import { config, shuffleArray } from "../../helpers";
 import styles from "./index.module.scss";
 
 const { defaultFlipTime, defaultGridSize: dgs } = config;
 
-const Grid = () => {
+const Grid = ({
+    setMovesCount,
+    gameStatus,
+    setGameStatus
+}: {
+    setMovesCount: any;
+    gameStatus: string;
+    setGameStatus: any;
+}) => {
     const initializeGrid = () => {
         let tempGrid = [];
         let contentArray = ["a", "b", "c", "d", "e", "f", "g", "h"];
@@ -28,15 +36,29 @@ const Grid = () => {
 
     const [grid, setGrid] = useState(initializeGrid());
     const [checkedCells, setCheckedCells] = useState<number[]>([]);
-    const [movesCount, setMovesCount] = useState<number>(0);
+    const [openedCellsCount, setOpenedCellsCount] = useState<number>(0);
+
+    useEffect(() => {
+        if (gameStatus === "not-started") {
+            setGrid(initializeGrid());
+            setCheckedCells([]);
+            setOpenedCellsCount(0);
+        }
+    }, [gameStatus]);
 
     const getCellById = (id: number) => {
         return grid.find((cell) => cell.id === id);
     };
 
+    const checkWinCondition = () => {
+        if (openedCellsCount === dgs * dgs) {
+            setGameStatus("stopped");
+        }
+    };
+
     const startTimer = () => {
         if (checkedCells.length === 1) {
-            setMovesCount((prev) => prev + 1);
+            setMovesCount((prev: number) => prev + 1);
             setTimeout(() => {
                 setCheckedCells([]);
                 setGrid((prev) =>
@@ -52,6 +74,9 @@ const Grid = () => {
     };
 
     const handleCellClick = (id: number) => {
+        if (gameStatus === "not-started") {
+            setGameStatus("started");
+        }
         startTimer();
         if (checkedCells.length < 2) {
             setCheckedCells((prev) => [...prev, id]);
@@ -59,6 +84,7 @@ const Grid = () => {
                 prev.map((cell) => {
                     if (id === cell.id || checkedCells[0] === cell.id) {
                         if (checkedCells.length === 1 && isCellsMatching([...checkedCells, id])) {
+                            setOpenedCellsCount((prev: number) => prev + 1);
                             return { ...cell, isOpened: true };
                         } else return { ...cell, isActive: true };
                     }
@@ -66,6 +92,7 @@ const Grid = () => {
                 })
             );
         }
+        checkWinCondition();
     };
 
     const isCellsMatching = (cells: number[]) => {
@@ -81,13 +108,10 @@ const Grid = () => {
     };
 
     return (
-        <div>
-            <div className={styles.grid}>
-                {grid.map((cell) => (
-                    <Cell key={cell.id} {...cell} onClick={() => handleCellClick(cell.id)} />
-                ))}
-            </div>
-            <div>{movesCount}</div>
+        <div className={styles.grid}>
+            {grid.map((cell) => (
+                <Cell key={cell.id} {...cell} onClick={() => handleCellClick(cell.id)} />
+            ))}
         </div>
     );
 };
