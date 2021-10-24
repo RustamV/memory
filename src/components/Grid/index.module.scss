@@ -1,5 +1,7 @@
 .grid {
     display: grid;
-    max-width: 800px;
-    background-color: cornflowerblue;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }

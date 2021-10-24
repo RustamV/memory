@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import styles from "./index.module.scss";
 
 const Timer = ({ gameStatus }: { gameStatus: string }) => {
     const [time, setTime] = useState<number>(0);
@@ -26,7 +27,12 @@ const Timer = ({ gameStatus }: { gameStatus: string }) => {
         }
     }, [gameStatus]);
 
-    return <div className="time-counter">{time}</div>;
+    return (
+        <div className={styles.timer}>
+            <span>Timer:</span>
+            <span>{time}</span>
+        </div>
+    );
 };
 
 export default Timer;

@@ -1,15 +1,14 @@
 import styles from "./index.module.scss";
 import cn from "classnames";
-import Example from "../../images/example.png";
+import Back from "../../images/back.png";
+
 const Cell = ({
-    id,
     content,
     isActive,
     isOpened,
     onClick,
     speed
 }: {
-    id: number;
     content: string;
     isActive: boolean;
     isOpened: boolean;
@@ -27,10 +26,10 @@ const Cell = ({
                 style={{
                     transition: `transform ${speed.value / 1000}s`
                 }}>
-                <img src={Example} />
-                <div className={styles.front}>{content}</div>
-                <div className={styles.back}>{content + content + content}</div>
+                <div className={styles.front}>{""}</div>
+                <div className={styles.back}>{content}</div>
             </div>
+            <img src={Back} alt="" />
         </div>
     );
 };

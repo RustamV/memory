@@ -1,0 +1,9 @@
+.timer {
+    display: flex;
+    justify-content: space-between;
+    font-size: 40px;
+
+    @media screen and (max-width: 768px) {
+        font-size: 20px;
+    }
+}

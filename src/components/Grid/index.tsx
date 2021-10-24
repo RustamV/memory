@@ -136,8 +136,7 @@ const Grid = ({
         <div
             className={styles.grid}
             style={{
-                gridTemplateColumns: `repeat(${width}, minmax(50px, 100px))`
-                // gridTemplateRows: `repeat(${height}, 75px)`
+                gridTemplateColumns: `repeat(${width}, minmax(40px, 100px))`
             }}>
             {grid.map((cell) => (
                 <Cell key={cell.id} {...cell} onClick={() => handleCellClick(cell.id)} speed={speed} />
