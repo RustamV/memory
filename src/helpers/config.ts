@@ -1,8 +1,6 @@
 import { configType } from "./types";
 
 const config: configType = {
-    defaultGridSize: 4,
-    defaultFlipTime: 1500,
     sizeOptions: [
         {id: 0, label: "4x4", value: {width: 4, height: 4}},
         {id: 1, label: "4x5", value: {width: 4, height: 5}},

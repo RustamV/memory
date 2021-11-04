@@ -16,8 +16,6 @@ type SizeType = {
 }
 
 type configType = {
-    defaultGridSize: number,
-    defaultFlipTime: number,
     sizeOptions: SizeType[],
     speedOptions: SpeedType[],
     content: string[],
