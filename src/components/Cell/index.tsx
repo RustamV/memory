@@ -22,11 +22,7 @@ const Cell = ({
                 [styles.flipped]: isOpened || isActive
             })}
             onClick={onClick}>
-            <div
-                className={styles.inner}
-                style={{
-                    transition: `transform ${speed.value / 1000}s`
-                }}>
+            <div className={styles.inner}>
                 <div className={styles.front}>{""}</div>
                 <div className={styles.back}>{content}</div>
             </div>

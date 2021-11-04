@@ -82,19 +82,23 @@ const Grid = ({
         // eslint-disable-next-line
     }, [openedCellsCount]);
 
+    const refreshGrid = () => {
+        setCheckedCells([]);
+        setGrid((prev) =>
+            prev.map((cell) => {
+                if (cell.isActive) {
+                    return { ...cell, isActive: false };
+                }
+                return cell;
+            })
+        );
+    };
+
     const startTimer = () => {
         if (checkedCells.length === 1) {
             setMovesCount((prev: number) => prev + 1);
             setTimeout(() => {
-                setCheckedCells([]);
-                setGrid((prev) =>
-                    prev.map((cell) => {
-                        if (cell.isActive) {
-                            return { ...cell, isActive: false };
-                        }
-                        return cell;
-                    })
-                );
+                refreshGrid();
             }, speed.value);
         }
     };
@@ -105,18 +109,22 @@ const Grid = ({
         }
         startTimer();
         if (checkedCells.length < 2) {
-            setCheckedCells((prev) => [...prev, id]);
-            setGrid((prev) =>
-                prev.map((cell) => {
-                    if (id === cell.id || checkedCells[0] === cell.id) {
-                        if (checkedCells.length === 1 && isCellsMatching([...checkedCells, id])) {
-                            setOpenedCellsCount((prev: number) => ++prev);
-                            return { ...cell, isOpened: true };
-                        } else return { ...cell, isActive: true };
-                    }
-                    return cell;
-                })
-            );
+            if (checkedCells.length === 1 && checkedCells[0] === id) {
+                refreshGrid();
+            } else {
+                setCheckedCells((prev) => [...prev, id]);
+                setGrid((prev) =>
+                    prev.map((cell) => {
+                        if (id === cell.id || checkedCells[0] === cell.id) {
+                            if (checkedCells.length === 1 && isCellsMatching([...checkedCells, id])) {
+                                setOpenedCellsCount((prev: number) => ++prev);
+                                return { ...cell, isOpened: true };
+                            } else return { ...cell, isActive: true };
+                        }
+                        return cell;
+                    })
+                );
+            }
         }
     };
 
