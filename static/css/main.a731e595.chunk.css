@@ -27,6 +27,7 @@
     text-align: center;
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
+    transition: all 1s;
 }
 .Cell_back__3PO-E,
 .Cell_front__2PQPF {
@@ -171,4 +172,4 @@ body {
     font-style: normal;
     font-display: swap;
 }
-/*# sourceMappingURL=main.3896b64b.chunk.css.map */
+/*# sourceMappingURL=main.a731e595.chunk.css.map */

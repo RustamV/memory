@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.3896b64b.chunk.css",
-    "main.js": "/static/js/main.ff787eb4.chunk.js",
-    "main.js.map": "/static/js/main.ff787eb4.chunk.js.map",
+    "main.css": "/static/css/main.a731e595.chunk.css",
+    "main.js": "/static/js/main.b5bec959.chunk.js",
+    "main.js.map": "/static/js/main.b5bec959.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.a890f851.js",
     "runtime-main.js.map": "/static/js/runtime-main.a890f851.js.map",
     "static/js/2.3075125e.chunk.js": "/static/js/2.3075125e.chunk.js",
     "static/js/2.3075125e.chunk.js.map": "/static/js/2.3075125e.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.3896b64b.chunk.css.map": "/static/css/main.3896b64b.chunk.css.map",
+    "static/css/main.a731e595.chunk.css.map": "/static/css/main.a731e595.chunk.css.map",
     "static/js/2.3075125e.chunk.js.LICENSE.txt": "/static/js/2.3075125e.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/UpheavalPro.bda9ace3.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.a890f851.js",
     "static/js/2.3075125e.chunk.js",
-    "static/css/main.3896b64b.chunk.css",
-    "static/js/main.ff787eb4.chunk.js"
+    "static/css/main.a731e595.chunk.css",
+    "static/js/main.b5bec959.chunk.js"
   ]
 }
