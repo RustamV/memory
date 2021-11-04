@@ -1,0 +1,174 @@
+.Grid_grid__24U5p {
+    display: grid;
+    grid-gap: 10px;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.Cell_cell__2a7NT {
+    background-color: transparent;
+    display: inline-block;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+}
+.Cell_cell__2a7NT.Cell_flipped__3SyFG .Cell_inner__2kN-3 {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+}
+.Cell_cell__2a7NT img {
+    width: 100%;
+    display: block;
+}
+.Cell_inner__2kN-3 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+.Cell_back__3PO-E,
+.Cell_front__2PQPF {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ccc;
+}
+.Cell_back__3PO-E {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    font-size: 45px;
+}
+.Game_game__1BEQM {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 200px auto;
+    grid-gap: 30px;
+    gap: 30px;
+    margin-top: 60px;
+}
+@media screen and (max-width: 768px) {
+    .Game_game__1BEQM {
+        grid-template-columns: auto;
+        margin-top: 20px;
+    }
+}
+.Game_sider__1WoH7 {
+    display: flex;
+    flex-direction: column;
+    grid-gap: 15px;
+    gap: 15px;
+}
+@media screen and (max-width: 768px) {
+    .Game_sider__1WoH7 {
+        padding: 0 20px;
+    }
+}
+.Game_moves__2n2V_ {
+    font-size: 40px;
+}
+@media screen and (max-width: 768px) {
+    .Game_moves__2n2V_ {
+        font-size: 20px;
+    }
+}
+.Game_size__2iIGz,
+.Game_speed__3MkOk {
+    font-size: 18px;
+}
+@media screen and (max-width: 768px) {
+    .Game_size__2iIGz,
+    .Game_speed__3MkOk {
+        font-size: 14px;
+    }
+}
+.Game_moves__2n2V_,
+.Game_size__2iIGz,
+.Game_speed__3MkOk {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Game_startButton__1VuC- {
+    font-family: "UpheavalPro";
+    -webkit-appearance: none;
+    appearance: none;
+    font-size: 30px;
+    padding: 13px 22px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    border-radius: 4px;
+}
+@media screen and (max-width: 768px) {
+    .Game_startButton__1VuC- {
+        font-size: 22px;
+    }
+}
+.Game_modal__2mRbH {
+    width: 300px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+}
+.Game_overlay__30vNx {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 60px;
+    position: fixed;
+    inset: 0;
+    background-color: hsla(0, 0%, 100%, 0.4);
+}
+.Game_header__tCX3R {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.Game_header__tCX3R h2 {
+    margin: 0;
+}
+.Game_content__1QC1c {
+    align-items: center;
+}
+.Game_content__1QC1c,
+.Timer_timer__3uqam {
+    display: flex;
+    justify-content: space-between;
+}
+.Timer_timer__3uqam {
+    font-size: 40px;
+}
+@media screen and (max-width: 768px) {
+    .Timer_timer__3uqam {
+        font-size: 20px;
+    }
+}
+.Select_select__sqDQU {
+    padding: 5px 30px 5px 0;
+    font-family: "UpheavalPro";
+    font-size: 18px;
+    border-color: #ccc;
+    border-radius: 4px;
+}
+body {
+    margin: 0;
+    font-family: "UpheavalPro";
+}
+@font-face {
+    font-family: "UpheavalPro";
+    src: url(../media/UpheavalPro.49c72e6a.otf);
+    src: url(../media/UpheavalPro.bda9ace3.ttf) format("truetype");
+    font-style: normal;
+    font-display: swap;
+}
+/*# sourceMappingURL=main.3896b64b.chunk.css.map */
