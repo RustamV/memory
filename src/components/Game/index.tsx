@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { Grid, Timer, Select } from "../index";
+import { config, SpeedType, SizeType } from "../../helpers";
 import Modal from "react-modal";
-import { config } from "../../helpers";
 import styles from "./index.module.scss";
 
 const { sizeOptions, speedOptions } = config;
 
 const Game = () => {
-    const [size, setSize] = useState<any>(sizeOptions[0]);
-    const [speed, setSpeed] = useState<any>(speedOptions[0]);
+    const [size, setSize] = useState<SizeType>(sizeOptions[0]);
+    const [speed, setSpeed] = useState<SpeedType>(speedOptions[0]);
     const [movesCount, setMovesCount] = useState<number>(0);
     const [gameStatus, setGameStatus] = useState<string>("not-started");
     const [modalVisible, setModalVisible] = useState<boolean>(false);
@@ -24,12 +24,14 @@ const Game = () => {
         setGameStatus("not-started");
     };
 
-    const onChangeSize = (option: any) => {
-        setSize(option);
+    const onChangeSize = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const newOption: SizeType = sizeOptions.find((item) => item.id === +event.target.value) ?? sizeOptions[0];
+        setSize(newOption);
     };
 
-    const onChangeSpeed = (option: any) => {
-        setSpeed(option);
+    const onChangeSpeed = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const newOption: SpeedType = speedOptions.find((item) => item.id === +event.target.value) ?? speedOptions[0];
+        setSpeed(newOption);
     };
 
     const onModalClose = () => {
@@ -46,11 +48,11 @@ const Game = () => {
                 <Timer gameStatus={gameStatus} />
                 <div className={styles.size}>
                     <span>Size:</span>
-                    <Select options={sizeOptions} onChange={onChangeSize} defaultValue={size} value={size} />
+                    <Select options={sizeOptions} onChange={onChangeSize} />
                 </div>
                 <div className={styles.speed}>
                     <span>Speed:</span>
-                    <Select options={speedOptions} onChange={onChangeSpeed} defaultValue={speed} value={speed} />
+                    <Select options={speedOptions} onChange={onChangeSpeed} />
                 </div>
                 <button onClick={startGame} className={styles.startButton}>
                     start

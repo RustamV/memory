@@ -1,6 +1,7 @@
+import { SpeedType } from "../../helpers";
+import Back from "../../images/back.png";
 import styles from "./index.module.scss";
 import cn from "classnames";
-import Back from "../../images/back.png";
 
 const Cell = ({
     content,
@@ -12,8 +13,8 @@ const Cell = ({
     content: string;
     isActive: boolean;
     isOpened: boolean;
-    onClick: any;
-    speed: any;
+    onClick: React.MouseEventHandler<HTMLDivElement>;
+    speed: SpeedType;
 }) => {
     return (
         <div

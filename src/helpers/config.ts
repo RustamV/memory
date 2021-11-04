@@ -1,4 +1,6 @@
-const config = {
+import { configType } from "./types";
+
+const config: configType = {
     defaultGridSize: 4,
     defaultFlipTime: 1500,
     sizeOptions: [

@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { Cell } from "..";
-import { config, shuffleArray } from "../../helpers";
+import { config, shuffleArray, SpeedType, SizeType } from "../../helpers";
 import styles from "./index.module.scss";
 
 const { content } = config;
@@ -13,12 +13,12 @@ const Grid = ({
     speed,
     startGame
 }: {
-    setMovesCount: any;
+    setMovesCount: Dispatch<SetStateAction<number>>;
     gameStatus: string;
-    setGameStatus: any;
-    size: any;
-    speed: any;
-    startGame: any;
+    setGameStatus: Dispatch<SetStateAction<string>>;
+    size: SizeType;
+    speed: SpeedType;
+    startGame: () => void;
 }) => {
     const {
         value: { width, height }

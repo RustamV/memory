@@ -1,36 +1,25 @@
-import { default as ReactSelect } from "react-select";
+import { SpeedType, SizeType } from "../../helpers";
+import styles from "./index.module.scss";
+
+type MyOption = SpeedType | SizeType;
 
 const Select = ({
-    className,
-    components,
     options,
-    onChange,
-    defaultValue,
-    value,
-    ...props
+    onChange
 }: {
-    className?: string;
-    components?: [];
-    options: any;
-    defaultValue: any;
-    onChange: any;
-    value: any;
+    options: MyOption[];
+    onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }) => {
     return (
-        <ReactSelect
-            defaultValue={defaultValue}
-            onChange={onChange}
-            value={value}
-            options={options}
-            isSearchable={false}
-            className={className}
-            classNamePrefix="select"
-            components={{
-                IndicatorSeparator: () => null,
-                ...components
-            }}
-            {...props}
-        />
+        <select onChange={onChange} className={styles.select}>
+            {options.map((option) => {
+                return (
+                    <option key={option.id} value={option.id}>
+                        {option.label}
+                    </option>
+                );
+            })}
+        </select>
     );
 };
 
