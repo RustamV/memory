@@ -6,7 +6,7 @@ import styles from "./index.module.scss";
 
 const { sizeOptions, speedOptions } = config;
 
-const Game = () => {
+const Game: React.FC = () => {
     const [size, setSize] = useState<SizeType>(sizeOptions[0]);
     const [speed, setSpeed] = useState<SpeedType>(speedOptions[0]);
     const [movesCount, setMovesCount] = useState<number>(0);

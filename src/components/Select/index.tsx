@@ -1,15 +1,11 @@
 import { SpeedType, SizeType } from "../../helpers";
 import styles from "./index.module.scss";
-
-type MyOption = SpeedType | SizeType;
-
-const Select = ({
-    options,
-    onChange
-}: {
-    options: MyOption[];
+interface Props {
+    options: SpeedType[] | SizeType[];
     onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
-}) => {
+}
+
+const Select: React.FC<Props> = ({ options, onChange }) => {
     return (
         <select onChange={onChange} className={styles.select}>
             {options.map((option) => {

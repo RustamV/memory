@@ -5,21 +5,16 @@ import styles from "./index.module.scss";
 
 const { content } = config;
 
-const Grid = ({
-    setMovesCount,
-    gameStatus,
-    setGameStatus,
-    size,
-    speed,
-    startGame
-}: {
+interface Props {
     setMovesCount: Dispatch<SetStateAction<number>>;
     gameStatus: string;
     setGameStatus: Dispatch<SetStateAction<string>>;
     size: SizeType;
     speed: SpeedType;
     startGame: () => void;
-}) => {
+}
+
+const Grid: React.FC<Props> = ({ setMovesCount, gameStatus, setGameStatus, size, speed, startGame }) => {
     const {
         value: { width, height }
     } = size;
@@ -147,7 +142,7 @@ const Grid = ({
                 gridTemplateColumns: `repeat(${width}, minmax(40px, 100px))`
             }}>
             {grid.map((cell) => (
-                <Cell key={cell.id} {...cell} onClick={() => handleCellClick(cell.id)} speed={speed} />
+                <Cell key={cell.id} {...cell} onClick={() => handleCellClick(cell.id)} />
             ))}
         </div>
     );

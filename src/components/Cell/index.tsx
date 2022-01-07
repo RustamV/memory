@@ -1,21 +1,15 @@
-import { SpeedType } from "../../helpers";
 import Back from "../../images/back.png";
 import styles from "./index.module.scss";
 import cn from "classnames";
 
-const Cell = ({
-    content,
-    isActive,
-    isOpened,
-    onClick,
-    speed
-}: {
+interface Props {
     content: string;
     isActive: boolean;
     isOpened: boolean;
     onClick: React.MouseEventHandler<HTMLDivElement>;
-    speed: SpeedType;
-}) => {
+}
+
+const Cell: React.FC<Props> = ({ content, isActive, isOpened, onClick }) => {
     return (
         <div
             className={cn(styles.cell, {

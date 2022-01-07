@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
 import styles from "./index.module.scss";
 
-const Timer = ({ gameStatus }: { gameStatus: string }) => {
+interface Props {
+    gameStatus: string;
+}
+
+const Timer: React.FC<Props> = ({ gameStatus }) => {
     const [time, setTime] = useState<number>(0);
     const [date, setDate] = useState(new Date());
 
